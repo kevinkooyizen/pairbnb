@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# keeping API keys safe by putting keys into .gitignore
+gem "figaro"
 # user management
 gem "clearance"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
