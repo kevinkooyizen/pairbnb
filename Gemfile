@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# tagging modals
+gem 'gutentag', '~> 0.9.0'
 # easier code input
 gem 'slim'
 # omniauth facebook
