@@ -1,0 +1,39 @@
+.user_container {
+  width: 100%;
+}
+
+.user_details {
+  padding: 10px 10px 10px 10px;
+}
+
+.user_content {
+  background-color: white;
+  width: 250px;
+  display: inline-block;
+  border-radius: 15px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+.profile_content {
+  margin-right: 50px;
+}
+
+.listing_content {
+  position: relative;
+}
+
+.listing_container {
+  display: inline-block;
+  position: absolute;
+}
+
+h4 a {
+  color: #6dd4b1;
+  transition: all 0.2s linear;
+  text-decoration: none;
+}
+
+h4 a:hover, h4 a:focus {
+  color: #357099;
+}
