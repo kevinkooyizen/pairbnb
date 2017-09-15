@@ -16,6 +16,7 @@
  */
 
 body {
+  overflow-x: hidden; 
   padding: 0;
   margin: 0;
   background: 
@@ -50,6 +51,7 @@ body {
 }
 
 .container {
+  min-height: calc(965px - 60px - 68px - 80px);
   margin: 20px;
   padding: 20px;
 }
@@ -136,6 +138,7 @@ body {
 }
 
 #footer {
+  bottom: 0;
   clear: both;
   position: relative;
   z-index: 10;
@@ -144,7 +147,7 @@ body {
   background-color: black;
   color: white;
   padding: 10px;
-  margin: auto;
+  margin: 0;
   ul {
     li {
       float: left;
@@ -167,4 +170,16 @@ body {
     .current-item {
       display: none;
     }
+}
+
+.Site {
+}
+
+.Site-footer {
+}
+
+.sign_in {
+  padding: 0;
+  float: right;
+  padding-right: 40px;
 }
