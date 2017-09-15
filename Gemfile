@@ -5,6 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# easier code input
+gem 'slim'
+# omniauth facebook
+gem 'omniauth-facebook'
+# omniauth
+gem 'omniauth'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
+gem 'omniauth-openid', github: 'intridea/omniauth-openid'
 # keeping API keys safe by putting keys into .gitignore
 gem "figaro"
 # user management
