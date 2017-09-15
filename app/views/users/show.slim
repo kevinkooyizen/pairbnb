@@ -1,0 +1,15 @@
+.user_container
+  .user_content.profile_content
+    .user_details   
+      h4 #{@user.name}
+      p Email: #{@user.email}
+      button type="submit"= link_to 'Add Listing', new_listing_path
+  .listing_container
+    - if !@listing[0].nil?
+      - @listing.each do |i|
+        .user_content.listing_content
+          .user_details
+            h4 
+              a href="/listings/#{i.id}" #{i.name}
+              
+            p Address: #{i.address}

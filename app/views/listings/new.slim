@@ -1,0 +1,5 @@
+h2 Create new Listing
+= form_for Listing.new do |form|
+  = render partial: '/listings/form', object: form
+  .submit-field
+    = form.submit
