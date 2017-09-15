@@ -74,10 +74,10 @@ body {
 }
  
 /*----- Menu -----*/
-  .menu {
-    width:100%;
-    background:#ff5a5f;
-  }
+.menu {
+  width:100%;
+  background:#40E0D0;
+}
 
 .menu ul {
   display:inline-block;
@@ -88,6 +88,7 @@ body {
   float:left;
   list-style:none;
   font-size: small;
+  font-size:17px;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -97,46 +98,16 @@ body {
 }
  
 .menu a {
-  color:#fff;
+  color:black;
   transition:color linear 0.15s;
   text-decoration: none;
 }
  
-.menu a:hover, .menu .current-item a {
+.menu a:hover {
   text-decoration:none;
-  color:#303030;
-}
-.menu {
-  width:100%;
-  background:#ff5a5f;
+  color:#008080;
 }
  
-.menu ul {
-  display:inline-block;
-}
- 
-.menu li {
-  margin:0px 50px 0px 0px;
-  float:left;
-  list-style:none;
-  font-size:17px;
-}
- 
-.menu li:last-child {
-  margin-right:0px;
-}
- 
-.menu a {
-  color:#fff;
-  transition:color linear 0.15s;
-  text-decoration: none;
-}
- 
-.menu a:hover, .menu .current-item a {
-  text-decoration:none;
-  color:#303030;
-}
-
 #footer {
   bottom: 0;
   clear: both;

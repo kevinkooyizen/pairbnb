@@ -3,11 +3,12 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(name: listing_name, user_id: current_user.id, address: listing_address)
+    @listing = Listing.new(listing_params)
     if @listing.save
       redirect_to "/users/#{current_user.id}"
     else
-      render template: 'listings/edit'
+      @errors = @listing.errors.full_messages
+      render 'new'
     end 
   end
 
@@ -28,11 +29,7 @@ class ListingsController < ApplicationController
 
   private
 
-  def listing_name
-    params["listing"]["name"]
-  end
-
-  def listing_address
-    params["listing"]["address"]
+  def listing_params
+    params.require(:listing).permit(:name, :address, :tag_names)
   end
 end
