@@ -1,7 +1,22 @@
-.text-field
-  = form.label 'Listing Name: '
-  = form.text_field :name, type: 'name'
+#new_listing_container
+  #new_listing_contents
+    .text-field
+      = form.label 'Listing Name: '
+      .listing_input
+        = form.text_field :name, type: 'name'
+        - if @errors
+          - if @errors.include?("Name can't be blank")
+              .error_message Name can't be blank
 
-.text-field
-  = form.label 'Listing Address: '
-  = form.text_field :address, type: 'address'
+    .text-field
+      = form.label 'Listing Address: '
+      .listing_input
+        = form.text_field :address, type: 'address'
+        - if @errors
+          - if @errors.include?("Address can't be blank")
+              .error_message Address can't be blank
+
+    .text-field
+      = form.label 'Listing Tag: '
+      .listing_input
+        = form.text_field :tag_names, type: 'tag_names'

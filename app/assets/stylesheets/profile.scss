@@ -29,11 +29,59 @@
 }
 
 h4 a {
-  color: #6dd4b1;
-  transition: all 0.2s linear;
+  color: #008080;
+  transition: color 0.2s linear;
   text-decoration: none;
 }
 
 h4 a:hover, h4 a:focus {
-  color: #357099;
+  color: #7FFFD4;
+}
+
+.error_message {
+  color: red;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#new_listing {
+
+}
+
+#new_listing_container {
+  background-color: white;
+  border-radius: 20px;
+  width: 500px;
+  margin-bottom: 15px;
+}
+
+.listing_input {
+  display: inline-block;
+}
+
+#listing_name {
+  margin-left: 16.7px;
+}
+
+#listing_tag_names {
+  margin-left: 35.97px;
+}
+
+#new_listing_container #new_listing_contents .text-field {
+  padding-bottom: 20px;
+}
+
+#new_listing_contents {
+  padding: 20px 20px 0px 20px;
+}
+
+#create_listing_title {
+  display: inline-block;
+  background-color: white;
+  border-radius: 20px;
+  padding: 0px 20px 0px 20px;
+}
+
+#create_listing_container {
+  margin-bottom: 15px;
 }
