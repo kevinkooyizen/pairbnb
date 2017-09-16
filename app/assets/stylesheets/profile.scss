@@ -44,18 +44,14 @@ h4 a:hover, h4 a:focus {
   margin-left: 10px;
 }
 
-#new_listing {
-
-}
-
-#new_listing_container {
+#new_form_container {
   background-color: white;
   border-radius: 20px;
   width: 500px;
   margin-bottom: 15px;
 }
 
-.listing_input {
+.form_input {
   display: inline-block;
 }
 
@@ -67,21 +63,25 @@ h4 a:hover, h4 a:focus {
   margin-left: 35.97px;
 }
 
-#new_listing_container #new_listing_contents .text-field {
+#new_form_container #new_form_contents .text-field {
   padding-bottom: 20px;
 }
 
-#new_listing_contents {
+#new_form_contents {
   padding: 20px 20px 0px 20px;
 }
 
-#create_listing_title {
+#create_form_title {
   display: inline-block;
   background-color: white;
   border-radius: 20px;
   padding: 0px 20px 0px 20px;
 }
 
-#create_listing_container {
+#create_form_container {
   margin-bottom: 15px;
+}
+
+.field_with_errors {
+  display: inline-block;
 }

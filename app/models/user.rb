@@ -1,16 +1,17 @@
 class User < ApplicationRecord
-  	include Clearance::User
+	include Clearance::User
+  validates :name, presence: true
+  validates :email, presence: true
+	has_many :authentications, dependent: :destroy
 
-  	has_many :authentications, dependent: :destroy
+	require 'securerandom'
 
-  	require 'securerandom'
-
-  	def self.create_with_auth_and_hash(authentication, auth_hash)
-	  	user = self.create!(
-	  		name: auth_hash.info.name,
-            provider: auth_hash.provider,
-	  		email: auth_hash.info.email,
-	  		password: SecureRandom.base64(10)
+	def self.create_with_auth_and_hash(authentication, auth_hash)
+  	user = self.create!(
+  		name: auth_hash.info.name,
+          provider: auth_hash.provider,
+  		email: auth_hash.info.email,
+  		password: SecureRandom.base64(10)
 		)
 		user.authentications << authentication
 		return user

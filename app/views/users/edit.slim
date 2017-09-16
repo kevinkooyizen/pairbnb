@@ -1,0 +1,7 @@
+#create_form_container
+  #create_form_title 
+    h2 Edit Profile
+= form_for @user do |form|
+  = render partial: '/users/form', object: form
+  .submit-field
+    = form.submit
