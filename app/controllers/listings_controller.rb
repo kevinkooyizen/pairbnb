@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
+    @listing.tag_names << params["listing"]["tag_names"]
     if @listing.save
       redirect_to "/users/#{current_user.id}"
     else
@@ -30,6 +31,6 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:name, :address, :tag_names)
+    params.require(:listing).permit(:name, :address, :user_id)
   end
 end

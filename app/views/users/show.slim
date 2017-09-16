@@ -13,3 +13,8 @@
               a href="/listings/#{i.id}" #{i.name}
               
             p Address: #{i.address}
+            button type="submit"= link_to 'Edit Listing', edit_listing_path
+
+            - if i.tag_names != []
+              p = i.tag_names
+

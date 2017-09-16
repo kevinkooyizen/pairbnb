@@ -20,3 +20,4 @@
       = form.label 'Listing Tag: '
       .listing_input
         = form.text_field :tag_names, type: 'tag_names'
+        = form.hidden_field :user_id, :value => current_user.id
