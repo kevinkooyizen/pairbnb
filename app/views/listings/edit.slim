@@ -1,0 +1,7 @@
+#create_form_container
+  #create_form_title 
+    h2 Edit new Listing
+= form_for @listing do |form|
+  = render partial: '/listings/edit_form', object: form
+  .submit-field
+    = form.submit

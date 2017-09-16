@@ -1,0 +1,22 @@
+#new_form_container
+  #new_form_contents
+    .text-field
+      = form.label 'Email: '
+      .form_input
+        = form.text_field :email, type: 'email'
+        - if @errors
+          - if @errors.include?("Email can't be blank")
+              .error_message Email can't be blank
+
+    .text-field
+      = form.label 'Name: '
+      .form_input
+        = form.text_field :name, type: 'name'
+        - if @errors
+          - if @errors.include?("Name can't be blank")
+              .error_message Name can't be blank
+
+    .text-field
+      = form.label 'Password: '
+      .form_input
+        = form.password_field :password

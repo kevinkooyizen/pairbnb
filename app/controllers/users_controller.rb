@@ -1,23 +1,30 @@
 class UsersController < Clearance::UsersController
 
   def edit
-    @user = user_from_params
-
-    if @user.save
-      sign_in @user
-      redirect_to '/'
-    else
-      render template: 'users/edit'
-    end 
+    @user = User.find(current_user.id)
   end
 
   def show
-    @user = current_user
-    @listing = Listing.where(user_id: current_user.id)
+    @user = User.find(params[:id])
+    @listing = Listing.where(user_id: params[:id])
     render template: 'users/show'
   end
 
+  def update
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      redirect_to "/users/#{current_user.id}"
+    else
+      @errors = @user.errors.full_messages
+      render 'edit'
+    end
+  end
+
   private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
+  end
 
   def user_from_params
     user_params = params[:user] || Hash.new

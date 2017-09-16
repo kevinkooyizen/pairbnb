@@ -1,0 +1,17 @@
+#new_form_container
+  #new_form_contents
+    .text-field
+      = edit_form.label 'Listing Name: '
+      .form_input
+        = edit_form.text_field :name, type: 'name'
+        - if @errors
+          - if @errors.include?("Name can't be blank")
+              .error_message Name can't be blank
+
+    .text-field
+      = edit_form.label 'Listing Address: '
+      .form_input
+        = edit_form.text_field :address, type: 'address'
+        - if @errors
+          - if @errors.include?("Address can't be blank")
+              .error_message Address can't be blank

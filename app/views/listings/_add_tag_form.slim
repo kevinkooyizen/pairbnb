@@ -1,0 +1,7 @@
+#new_form_container
+  #new_form_contents
+    .text-field
+      = add_tag_form.label 'Listing Tag: '
+      .form_input
+        = add_tag_form.text_field :tag_names, type: 'tag_names'
+        = add_tag_form.hidden_field :user_id, :value => current_user.id

@@ -3,18 +3,25 @@
     .user_details   
       h4 #{@user.name}
       p Email: #{@user.email}
+      button type="submit"= link_to 'Edit Profile', edit_user_path
       button type="submit"= link_to 'Add Listing', new_listing_path
   .listing_container
-    - if !@listing[0].nil?
-      - @listing.each do |i|
-        .user_content.listing_content
-          .user_details
-            h4 
-              a href="/listings/#{i.id}" #{i.name}
-              
-            p Address: #{i.address}
-            button type="submit"= link_to 'Edit Listing', edit_listing_path
+    - if !@listing.nil?  
+      - if !@listing[0].nil?
+        - @listing.each do |i|
+          .user_content.listing_content
+            .user_details
+              h4 
+                a href="/listings/#{i.id}" #{i.name}
+                
+              p Address: #{i.address}
+              button type="submit"= link_to 'Edit Listing', edit_listing_path(i)
+              button type="submit"= link_to 'Add tag', add_tag_path(i, tag)
 
-            - if i.tag_names != []
-              p = i.tag_names
+              - if i.tag_names != []
+                h3 Tags:
+                ul
+                  - i.tag_names.each  do |tag|
+                    li = tag.capitalize
 
+                    button type="submit"= link_to 'Delete tag', remove_tag_path(i, tag)
