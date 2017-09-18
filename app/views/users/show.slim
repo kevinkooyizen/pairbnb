@@ -1,8 +1,10 @@
 .user_container
   .user_content.profile_content
     .user_details   
-      h4 #{@user.name}
+      h4 #{@user.full_name}
       p Email: #{@user.email}
+      p Birthday: #{@user.birthdate}
+      p Location: #{@user.country}
       button type="submit"= link_to 'Edit Profile', edit_user_path
       button type="submit"= link_to 'Add Listing', new_listing_path
   .listing_container

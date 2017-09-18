@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create_from_omni_auth'
   get "/listings/:id/remove_tag/:name" => "listings#remove_tag", as: "remove_tag"
   get "/listings/:id/add_tag" => "listings#add_tag", as: "add_tag"
+  get '/about' => "static#about", as: "about"
 end

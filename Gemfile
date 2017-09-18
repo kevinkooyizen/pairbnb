@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Faker
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 # tagging modals
 gem 'gutentag', '~> 0.9.0'
 # easier code input

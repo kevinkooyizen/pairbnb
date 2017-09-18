@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/stympy/faker.git
+  revision: dfb0762fffe7cd5ba80a6de726e063b2bf6e6240
+  branch: master
+  specs:
+    faker (1.8.4)
+      i18n (~> 0.5)
+
+GIT
   remote: https://github.com/intridea/omniauth-github.git
   revision: 2e77639f32c35598e398c0c591ffab37691cdee7
   specs:
@@ -234,6 +242,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   clearance
   coffee-rails (~> 4.2)
+  faker!
   figaro
   gutentag (~> 0.9.0)
   jbuilder (~> 2.5)
