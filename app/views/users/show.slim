@@ -5,8 +5,8 @@
       p Email: #{@user.email}
       p Birthday: #{@user.birthdate}
       p Location: #{@user.country}
-      button type="submit"= link_to 'Edit Profile', edit_user_path
-      button type="submit"= link_to 'Add Listing', new_listing_path
+      button type="submit"= link_to 'Edit Profile', edit_user_path(current_user.id)
+      button type="submit"= link_to 'Add Listing', new_user_listing_path(current_user.id)
   .listing_container
     - if !@listing.nil?  
       - if !@listing[0].nil?
@@ -14,11 +14,15 @@
           .user_content.listing_content
             .user_details
               h4 
-                a href="/listings/#{i.id}" #{i.name}
+                a href="/users/#{@user.id}/listings/#{i.id}" #{i.name}
                 
               p Address: #{i.address}
-              button type="submit"= link_to 'Edit Listing', edit_listing_path(i)
+              p Property Type: #{i.property_type}
+
+              
+              button type="submit"= link_to 'Edit Listing', edit_user_listing_path(current_user.id, i)
               button type="submit"= link_to 'Add tag', add_tag_path(i, tag)
+              button type="submit"= link_to 'Delete Listing', user_listing_path(current_user, i), :method => :delete
 
               - if i.tag_names != []
                 h3 Tags:

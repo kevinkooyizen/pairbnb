@@ -1,0 +1,26 @@
+.container.mid_page_container
+  .row
+    .col-sm-6.col-md-4.col-lg-3.mt-4.front_page_card_container
+      .card.card-inverse.card-info.front_page_card
+        img.card-img-top src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" /
+        .card-block
+          figure.profile
+            img.profile-avatar alt="" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" /
+          h4.card-title.mt-3 =@listing.name
+          .meta.card-text
+            a = @listing.property_type
+          .card-text
+            p Property Type: #{@listing.property_type}
+            p Room number: #{@listing.room_number}
+            p Number of beds: #{@listing.bed_number}
+            p Accommodates: #{@listing.guest_number}
+            p Country: #{@listing.country}
+            p State: #{@listing.state}
+            p City: #{@listing.city}
+            p Zipcode: #{@listing.zipcode}
+            p Address: #{@listing.address}
+            p Price: RM#{@listing.price}/night
+            p Description: #{@listing.description}
+        .card-footer
+          small Last updated 3 mins ago
+          button.btn.btn-info.float-right.btn-sm Follow

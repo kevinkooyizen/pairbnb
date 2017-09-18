@@ -1,7 +1,7 @@
 #create_form_container
   #create_form_title 
     h2 Create new Listing
-= form_for @listing do |form|
+= form_for [current_user, @listing] do |form|
   = render partial: '/listings/form', object: form
   .submit-field
     = form.submit

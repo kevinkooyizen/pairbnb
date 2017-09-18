@@ -21,7 +21,7 @@ class ListingsController < ApplicationController
       @listing.tag_names << params["listing"]["tag_names"]
     end
     if @listing.save
-      redirect_to "/users/#{current_user.id}"
+      redirect_to "/users/#{current_user.id}/listings/#{params[:id]}"
     else
       @errors = @listing.errors.full_messages
       render 'edit'
@@ -33,12 +33,31 @@ class ListingsController < ApplicationController
   end
 
   def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy
+    redirect_to "/users/#{current_user.id}"
   end
 
   def index
+    @listing = Listing.all
+    if params[:search]
+      @listing = Listing.search(params[:search]).order("created_at DESC")
+    else
+      @listing = Listing.all.order("created_at DESC")
+    end
+  end
+
+  def all
+    @listing = Listing.all
+    if params[:search]
+      @listing = Listing.search(params[:search]).order("created_at DESC")
+    else
+      @listing = Listing.all.order("created_at DESC")
+    end
   end
 
   def show
+    @listing = Listing.find(params[:id])
   end
 
   def add_tag
@@ -55,6 +74,6 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:name, :address, :user_id)
+    params.require(:listing).permit(:name, :address, :property_type, :user_id, :room_number, :guest_number, :country, :state, :city, :zipcode, :price, :description, :bed_number)
   end
 end
