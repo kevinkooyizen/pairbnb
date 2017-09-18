@@ -5,7 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# Faker
+# pagination
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+# Faker for fake data
 gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 # tagging modals
 gem 'gutentag', '~> 0.9.0'

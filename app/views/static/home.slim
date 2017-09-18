@@ -1,4 +1,4 @@
-.container
+.container.mid_page_container
   .row
     - @listing.each do |listing|
       .col-sm-6.col-md-4.col-lg-3.mt-4.front_page_card_container
@@ -19,8 +19,9 @@
               p City: #{listing.city}
               p Zipcode: #{listing.zipcode}
               p Address: #{listing.address}
-              p Price: #{listing.price}
+              p Price: RM#{listing.price}/night
               p Description: #{listing.description}
           .card-footer
             small Last updated 3 mins ago
             button.btn.btn-info.float-right.btn-sm Follow
+  = paginate @listing, theme: 'twitter-bootstrap-4', pagination_class: "pagination-sm"

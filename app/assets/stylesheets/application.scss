@@ -50,10 +50,10 @@ body {
   }
 }
 
-.container {
-  min-height: calc(965px - 60px - 68px - 80px);
-  margin: 20px;
+.mid_page_container {
+  min-height: calc(100vh - 50px - 42px);
   padding: 20px;
+  width: 90%;
 }
 
 /*----- Para -----*/
@@ -153,4 +153,19 @@ body {
   padding: 0;
   float: right;
   padding-right: 40px;
+}
+
+.top_nav {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nav_menu {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.nav_container {
+  align-self:center;
 }

@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
 	def home
-    @listing = Listing.all
+    @listing = Listing.page params[:page]
 	end
 
   def about

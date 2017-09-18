@@ -1,13 +1,24 @@
-nav.menu
-  ul.active
-    li.current-item= link_to "Home", root_url
-    li= link_to "About Us", about_path
-  ul.sign_in
-    - if !signed_in?
+nav.menu.nav_menu
+  .nav_container
+    ul.active.top_nav
+      li.current-item= link_to "Home", root_url
+      li= link_to "About Us", about_path
+
+  .nav_container.top_nav
+    .input-group
+      input.form-control type="search" /
+      span.input-group-btn
+        button.btn.btn-primary type="button" 
+          span.glyphicon.glyphicon-search aria-hidden="true" 
+          | Search!
+  
+  .nav_container.float-right
+    ul.sign_in.top_nav
+      - if !signed_in?
         li= link_to "Facebook login", "/auth/facebook"
         li= link_to "Signup", "#"
         li= link_to "Login", sign_in_path
-    - else
+      - else
         li= link_to "#{current_user.first_name}", user_path(current_user)
         li= link_to 'Sign out', sign_out_path, method: :delete
-        li= link_to "Profile page", "#"
+      
