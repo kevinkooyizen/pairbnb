@@ -71,6 +71,21 @@ class ListingsController < ApplicationController
     redirect_to "/users/#{current_user.id}"
   end
 
+  def verify
+    @listing = Listing.find(params[:id])
+    if @listing.verification == false
+      if allowed?("verify", current_user)
+        @listing.update(verification: true)
+        flash[:notice] = "Verified."
+      else
+        flash[:notice] = "Sorry you're not allowed to perform this action."
+      end
+    else
+      flash[:notice] = "Listing already verified."
+    end
+      render 'edit'
+  end
+
   private
 
   def listing_params

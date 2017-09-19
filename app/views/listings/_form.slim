@@ -1,89 +1,89 @@
 #new_form_container
   #new_form_contents
     .text-field
-      = edit_form.label 'Listing Name: '
+      = form.label 'Listing Name: '
       .form_input
-        = edit_form.text_field :name, type: 'name'
+        = form.text_field :name, type: 'name'
         - if @errors
           - if @errors.include?("Name can't be blank")
             .error_message
               | Name can't be blank
     .text-field
-      = edit_form.label 'Listing Address: '
+      = form.label 'Listing Address: '
       .form_input
-        = edit_form.text_field :address, type: 'address'
+        = form.text_field :address, type: 'address'
         - if @errors
           - if @errors.include?("Address can't be blank")
             .error_message
               | Address can't be blank
     .text-field
-      = edit_form.label 'Listing Property type: '
+      = form.label 'Listing Property type: '
       .form_input
-        = edit_form.text_field :property_type, type: 'property_type'
+        = form.text_field :property_type, type: 'property_type'
         - if @errors
           - if @errors.include?("Property_type can't be blank")
             .error_message
               | Property Type can't be blank
     .text-field
-      = edit_form.label 'Listing Room Number(s): '
+      = form.label 'Listing Room Number(s): '
       .form_input
-        = edit_form.text_field :room_number, type: 'room_number'
+        = form.text_field :room_number, type: 'room_number'
         - if @errors
           - if @errors.include?("Room_number can't be blank")
             .error_message
               | Room Number can't be blank
     .text-field
-      = edit_form.label 'Listing Guest Number(s): '
+      = form.label 'Listing Guest Number(s): '
       .form_input
-        = edit_form.text_field :guest_number, type: 'guest_number'
+        = form.text_field :guest_number, type: 'guest_number'
         - if @errors
           - if @errors.include?("Guest_number can't be blank")
             .error_message
               | Guest Number can't be blank
     .text-field
-      = edit_form.label 'Listing Country: '
+      = form.label 'Listing Country: '
       .form_input
-        = edit_form.text_field :country, type: 'country'
+        = form.text_field :country, type: 'country'
         - if @errors
           - if @errors.include?("Country can't be blank")
             .error_message
               | Country can't be blank
     .text-field
-      = edit_form.label 'Listing State: '
+      = form.label 'Listing State: '
       .form_input
-        = edit_form.text_field :state, type: 'state'
+        = form.text_field :state, type: 'state'
         - if @errors
           - if @errors.include?("State can't be blank")
             .error_message
               | State can't be blank
     .text-field
-      = edit_form.label 'Listing City: '
+      = form.label 'Listing City: '
       .form_input
-        = edit_form.text_field :city, type: 'city'
+        = form.text_field :city, type: 'city'
         - if @errors
           - if @errors.include?("City can't be blank")
             .error_message
               | City can't be blank
     .text-field
-      = edit_form.label 'Listing Zipcode: '
+      = form.label 'Listing Zipcode: '
       .form_input
-        = edit_form.text_field :zipcode, type: 'zipcode'
+        = form.text_field :zipcode, type: 'zipcode'
         - if @errors
           - if @errors.include?("Zipcode can't be blank")
             .error_message
               | Zipcode can't be blank           
     .text-field
-      = edit_form.label 'Listing Price: '
+      = form.label 'Listing Price: '
       .form_input
-        = edit_form.text_field :price, type: 'price'
+        = form.text_field :price, type: 'price'
         - if @errors
           - if @errors.include?("Price can't be blank")
             .error_message
               | Price can't be blank  
     .text-field
-      = edit_form.label 'Listing Description: '
+      = form.label 'Listing Description: '
       .form_input
-        = edit_form.text_field :description, type: 'description'
+        = form.text_field :description, type: 'description'
         - if @errors
           - if @errors.include?("Description can't be blank")
             .error_message

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   get "/listings" => "listings#all", as: "all_listings"
-
+  get "/listings/:id/verify" => "listings#verify", as: "verify_listing"
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"

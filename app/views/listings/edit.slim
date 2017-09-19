@@ -1,6 +1,11 @@
 #create_form_container
   #create_form_title 
     h2 Edit new Listing
+  #verification_notice
+    - if flash.notice == "Verified."
+      h3 style="color:green" = flash.notice
+    - else
+      h3 = flash.notice
 = form_for [current_user, @listing] do |form|
   = render partial: '/listings/edit_form', object: form
   .submit-field

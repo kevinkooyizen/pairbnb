@@ -9,6 +9,9 @@
               img.profile-avatar alt="" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" /
             h4.card-title.mt-3 
               a href="users/#{listing.user_id}/listings/#{listing.id}" =listing.name
+              -if logged_in?
+                - if listing.verification == false && current_user.customer == false
+                  button.btn.btn-info.float-right.btn-sm type="submit"=link_to 'Verify Listing', verify_listing_path(listing)
             .meta.card-text
               a = listing.property_type
             .card-text

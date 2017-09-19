@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20170919023136) do
     t.integer "price"
     t.string "description"
     t.integer "bed_number"
-    t.boolean "verification"
+    t.boolean "verification", default: false
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 20170919023136) do
     t.string "country"
     t.date "birthdate"
     t.string "full_name"
-    t.boolean "admin"
-    t.boolean "moderator"
-    t.boolean "customer"
+    t.boolean "admin", default: false
+    t.boolean "moderator", default: false
+    t.boolean "customer", default: true
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

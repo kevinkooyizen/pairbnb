@@ -19,6 +19,9 @@ nav.menu.nav_menu
         li= link_to "Signup", "#"
         li= link_to "Login", sign_in_path
       - else
-        li= link_to "#{current_user.first_name}", user_path(current_user)
+        - if current_user.first_name.nil?
+            li= link_to "#{current_user.full_name}", user_path(current_user)
+        - else          
+            li= link_to "#{current_user.first_name}", user_path(current_user)
         li= link_to 'Sign out', sign_out_path, method: :delete
       

@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# enum help
+gem 'enum_help'
 # pagination
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
