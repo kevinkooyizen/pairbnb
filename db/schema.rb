@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918040906) do
+ActiveRecord::Schema.define(version: 20170919023136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170918040906) do
     t.integer "price"
     t.string "description"
     t.integer "bed_number"
+    t.boolean "verification"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
@@ -80,6 +81,9 @@ ActiveRecord::Schema.define(version: 20170918040906) do
     t.string "country"
     t.date "birthdate"
     t.string "full_name"
+    t.boolean "admin"
+    t.boolean "moderator"
+    t.boolean "customer"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
