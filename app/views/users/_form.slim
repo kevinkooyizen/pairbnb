@@ -20,3 +20,11 @@
       = form.label 'Password: '
       .form_input
         = form.password_field :password
+    .text-field
+      = form.label 'Listing Photo: '
+      .form_input
+        = form.file_field :photo
+        - if @errors
+          - if @errors.include?("Photo can't be blank")
+            .error_message
+              | Photo can't be blank                

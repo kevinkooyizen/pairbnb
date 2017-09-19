@@ -58,6 +58,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @reservation = Reservation.new
   end
 
   def add_tag
@@ -89,6 +90,6 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:name, :address, :property_type, :user_id, :room_number, :guest_number, :country, :state, :city, :zipcode, :price, :description, :bed_number)
+    params.require(:listing).permit(:name, :address, :property_type, :user_id, :room_number, :guest_number, :country, :state, :city, :zipcode, :price, :description, :bed_number, photos: [])
   end
 end

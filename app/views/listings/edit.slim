@@ -4,7 +4,7 @@
   #verification_notice
     - if flash.notice == "Verified."
       h3 style="color:green" = flash.notice
-    - else
+    - elsif flash.notice == "Sorry you're not allowed to perform this action." or flash.notice == "Listing already verified."
       h3 = flash.notice
 = form_for [current_user, @listing] do |form|
   = render partial: '/listings/edit_form', object: form

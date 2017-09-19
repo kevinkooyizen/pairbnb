@@ -93,3 +93,11 @@
       .form_input
         = edit_form.text_field :tag_names, type: 'tag_names'
         = edit_form.hidden_field :user_id, :value => current_user.id
+    .text-field
+      = edit_form.label 'Listing Photo: '
+      .form_input
+        = edit_form.file_field :photos, multiple: true
+        - if @errors
+          - if @errors.include?("Photo can't be blank")
+            .error_message
+              | Photo can't be blank                     

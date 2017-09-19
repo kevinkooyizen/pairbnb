@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170919023136) do
+ActiveRecord::Schema.define(version: 20170919093011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,7 +63,20 @@ ActiveRecord::Schema.define(version: 20170919023136) do
     t.string "description"
     t.integer "bed_number"
     t.boolean "verification", default: false
+    t.json "photos"
     t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "number_of_guests"
+    t.date "check_in_date"
+    t.date "check_out_date"
+    t.index ["listing_id"], name: "index_reservations_on_listing_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,6 +94,8 @@ ActiveRecord::Schema.define(version: 20170919023136) do
     t.string "country"
     t.date "birthdate"
     t.string "full_name"
+    t.json "photo"
+    t.json "photos"
     t.boolean "admin", default: false
     t.boolean "moderator", default: false
     t.boolean "customer", default: true
@@ -90,4 +105,6 @@ ActiveRecord::Schema.define(version: 20170919023136) do
 
   add_foreign_key "authentications", "users"
   add_foreign_key "listings", "users"
+  add_foreign_key "reservations", "listings"
+  add_foreign_key "reservations", "users"
 end

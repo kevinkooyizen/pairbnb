@@ -3,7 +3,7 @@
     .text-field
       = form.label 'Listing Name: '
       .form_input
-        = form.text_field :name, type: 'name'
+        = form.text_field :name
         - if @errors
           - if @errors.include?("Name can't be blank")
             .error_message
@@ -11,7 +11,7 @@
     .text-field
       = form.label 'Listing Address: '
       .form_input
-        = form.text_field :address, type: 'address'
+        = form.text_field :address
         - if @errors
           - if @errors.include?("Address can't be blank")
             .error_message
@@ -19,7 +19,7 @@
     .text-field
       = form.label 'Listing Property type: '
       .form_input
-        = form.text_field :property_type, type: 'property_type'
+        = form.text_field :property_type
         - if @errors
           - if @errors.include?("Property_type can't be blank")
             .error_message
@@ -27,7 +27,7 @@
     .text-field
       = form.label 'Listing Room Number(s): '
       .form_input
-        = form.text_field :room_number, type: 'room_number'
+        = form.number_field :room_number, type: 'room_number'
         - if @errors
           - if @errors.include?("Room_number can't be blank")
             .error_message
@@ -35,7 +35,7 @@
     .text-field
       = form.label 'Listing Guest Number(s): '
       .form_input
-        = form.text_field :guest_number, type: 'guest_number'
+        = form.number_field :guest_number, type: 'guest_number'
         - if @errors
           - if @errors.include?("Guest_number can't be blank")
             .error_message
@@ -67,7 +67,7 @@
     .text-field
       = form.label 'Listing Zipcode: '
       .form_input
-        = form.text_field :zipcode, type: 'zipcode'
+        = form.number_field :zipcode, type: 'zipcode'
         - if @errors
           - if @errors.include?("Zipcode can't be blank")
             .error_message
@@ -75,7 +75,7 @@
     .text-field
       = form.label 'Listing Price: '
       .form_input
-        = form.text_field :price, type: 'price'
+        = form.number_field :price, type: 'price'
         - if @errors
           - if @errors.include?("Price can't be blank")
             .error_message
@@ -93,3 +93,11 @@
       .form_input
         = form.text_field :tag_names, type: 'tag_names'
         = form.hidden_field :user_id, :value => current_user.id
+    .text-field
+      = form.label 'Listing Photo: '
+      .form_input
+        = form.file_field :photos, multiple: true
+        - if @errors
+          - if @errors.include?("Photo can't be blank")
+            .error_message
+              | Photo can't be blank             

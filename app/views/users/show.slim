@@ -1,6 +1,7 @@
-.user_container.mid_page_container
+.user_container
   .user_content.profile_content
-    .user_details   
+    .user_details
+      img src="#{@user.photo}" style="width:230px"
       h4 #{@user.full_name}
       p Email: #{@user.email}
       p Birthday: #{@user.birthdate}
@@ -15,6 +16,8 @@
             .user_details
               h4 
                 a href="/users/#{@user.id}/listings/#{i.id}" #{i.name}
+              a href="/users/#{@user.id}/listings/#{i.id}" 
+                img src="#{i.photos[0]}" style="width:230px"
                 
               p Address: #{i.address}
               p Property Type: #{i.property_type}

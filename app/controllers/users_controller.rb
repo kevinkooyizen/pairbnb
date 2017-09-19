@@ -11,7 +11,7 @@ class UsersController < Clearance::UsersController
   end
 
   def update
-    @user = User.find(current_user.id)
+    @user = current_user
     if @user.update(user_params)
       redirect_to "/users/#{current_user.id}"
     else
@@ -23,6 +23,6 @@ class UsersController < Clearance::UsersController
   private
 
   def user_params
-    params.require(:user).permit(:full_name, :email, :password)
+    params.require(:user).permit(:full_name, :email, :password, :photo)
   end
 end

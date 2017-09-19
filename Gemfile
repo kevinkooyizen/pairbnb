@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# fog
+gem 'fog'
+# mini magic
+gem "mini_magick"
+# carrierwave
+gem 'carrierwave', '~> 1.0'
 # enum help
 gem 'enum_help'
 # pagination

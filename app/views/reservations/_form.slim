@@ -1,0 +1,26 @@
+#new_form_container
+  #new_form_contents
+    .text-field
+      = form.label 'Check In: '
+      .form_input
+        = form.text_field :check_in_date
+        - if @errors
+          - if @errors.include?("Check in can't be blank")
+            .error_message
+              | Check In can't be blank
+    .text-field
+      = form.label 'Check Out: '
+      .form_input
+        = form.text_field :check_out_date
+        - if @errors
+          - if @errors.include?("Check out can't be blank")
+            .error_message
+              | Check Out can't be blank
+    .text-field
+      = form.label 'Guests: '
+      .form_input
+        = form.text_field :number_of_guests
+        - if @errors
+          - if @errors.include?("Number of guests can't be blank")
+            .error_message
+              | Number of Guests can't be blank

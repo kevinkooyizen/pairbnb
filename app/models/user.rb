@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :full_name, presence: true
   validates :email, presence: true
 	has_many :authentications, dependent: :destroy
+  mount_uploader :photo, PhotoUploader
 
 	require 'securerandom'
 
