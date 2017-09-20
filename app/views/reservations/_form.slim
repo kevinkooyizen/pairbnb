@@ -1,21 +1,13 @@
 #new_form_container
   #new_form_contents
     .text-field
-      = form.label 'Check In: '
+      = form.label 'Duration of stay: '
       .form_input
         = form.date_field :check_in_date
         - if @errors
           - if @errors.include?("Check in can't be blank")
             .error_message
               | Check In can't be blank
-    .text-field
-      = form.label 'Check Out: '
-      .form_input
-        = form.date_field :check_out_date
-        - if @errors
-          - if @errors.include?("Check out can't be blank")
-            .error_message
-              | Check Out can't be blank
     .text-field
       = form.label 'Guests: '
       .form_input

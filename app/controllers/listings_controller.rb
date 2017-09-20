@@ -59,6 +59,8 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
     @reservation = @listing.reservations.new
+    reservations = Reservation.where(listing_id: params[:id]).map{|x| {from: x.check_in_date, to: x.check_out_date.prev_day}}
+    gon.reservations = reservations
   end
 
   def add_tag
