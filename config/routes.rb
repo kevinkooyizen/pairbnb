@@ -7,8 +7,13 @@ Rails.application.routes.draw do
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
     resources :listings
-    resources :reservations
   end
+
+  resources :listings do
+    resources :reservations, only: [:create]
+  end
+
+  resources :reservations, only: [:destroy]
 
   get "/listings" => "listings#all", as: "all_listings"
   get "/listings/:id/verify" => "listings#verify", as: "verify_listing"

@@ -1,4 +1,5 @@
 class Listing < ApplicationRecord
+  has_many :reservations
   paginates_per 4
   belongs_to :user
   # serialize :photos, Array

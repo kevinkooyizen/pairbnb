@@ -3,7 +3,7 @@
     .text-field
       = form.label 'Check In: '
       .form_input
-        = form.text_field :check_in_date
+        = form.date_field :check_in_date
         - if @errors
           - if @errors.include?("Check in can't be blank")
             .error_message
@@ -11,7 +11,7 @@
     .text-field
       = form.label 'Check Out: '
       .form_input
-        = form.text_field :check_out_date
+        = form.date_field :check_out_date
         - if @errors
           - if @errors.include?("Check out can't be blank")
             .error_message
@@ -19,8 +19,12 @@
     .text-field
       = form.label 'Guests: '
       .form_input
-        = form.text_field :number_of_guests
+        = form.number_field :number_of_guests
         - if @errors
           - if @errors.include?("Number of guests can't be blank")
             .error_message
               | Number of Guests can't be blank
+        = form.hidden_field :listing_id, value: @listing.id
+        = form.hidden_field :user_id, value: current_user.id
+- if @errors.present?
+  = @errors

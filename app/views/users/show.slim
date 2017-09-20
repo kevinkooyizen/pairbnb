@@ -8,6 +8,14 @@
       p Location: #{@user.country}
       button type="submit"= link_to 'Edit Profile', edit_user_path(current_user.id)
       button type="submit"= link_to 'Add Listing', new_user_listing_path(current_user.id)
+    table 
+      - @reservations.each do |reservation|
+        tr
+          td= link_to reservation.listing.name, reservation.listing
+          td= reservation.check_in_date
+          td= reservation.check_out_date
+          td= reservation.number_of_guests
+          td= reservation.total_price
   .listing_container
     - if !@listing.nil?  
       - if !@listing[0].nil?

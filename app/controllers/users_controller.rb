@@ -1,11 +1,16 @@
 class UsersController < Clearance::UsersController
 
+  def index
+    @users = User.all
+  end
+
   def edit
     @user = User.find(current_user.id)
   end
 
   def show
     @user = User.find(params[:id])
+    @reservations = @user.reservations
     @listing = Listing.where(user_id: params[:id])
     render template: 'users/show'
   end
