@@ -26,3 +26,5 @@
               | Number of Guests can't be blank
         = form.hidden_field :listing_id, value: @listing.id
         = form.hidden_field :user_id, value: current_user.id
+- if @errors.present?
+  = @errors

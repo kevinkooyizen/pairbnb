@@ -1,27 +1,17 @@
 class ReservationsController < ApplicationController
-  def new
-  end
-
   def create
-    reservation = Reservation.new(reservation_params)
-    byebug
-    if reservation.save
+    @listing = Listing.find(params[:listing_id])
+    @reservation = current_user.reservations.new(reservation_params)
+    @reservation.listing = @listing
+    if @reservation.save
+      redirect_to current_user
+    else
+      @errors = @reservation.errors.full_messages
+      render "listings/show"
     end
   end
 
-  def update
-  end
-
-  def edit
-  end
-
   def destroy
-  end
-
-  def index
-  end
-
-  def show
   end
 
   def reservation_params

@@ -58,7 +58,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
-    @reservation = Reservation.new
+    @reservation = @listing.reservations.new
   end
 
   def add_tag

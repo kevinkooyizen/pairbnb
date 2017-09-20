@@ -52,7 +52,7 @@
         a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button" 
           span.carousel-control-next-icon aria-hidden="true" 
           span.sr-only Next
-  = form_for [current_user, @reservation] do |form|
+  = form_for [@listing, @reservation] do |form|
     = render partial: '/reservations/form', object: form
     .submit-field
       = form.submit
