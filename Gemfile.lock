@@ -72,6 +72,8 @@ GEM
     bootstrap4-kaminari-views (1.0.0)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    braintree (2.78.0)
+      builder (>= 2.0.0)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.15.1)
@@ -406,6 +408,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap4-kaminari-views
+  braintree
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)

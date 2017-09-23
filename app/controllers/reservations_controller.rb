@@ -1,4 +1,9 @@
 class ReservationsController < ApplicationController
+
+  def new
+    @client_token = Braintree::ClientToken.generate
+  end
+
   def create
     date = params[:reservation][:check_in_date].partition(' to ')
     params[:reservation][:check_in_date] = date[0]
@@ -7,7 +12,7 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.new(reservation_params)
     @reservation.listing = @listing
     if @reservation.save
-      redirect_to current_user
+      render "braintree/new"
     else
       @errors = @reservation.errors.full_messages
       render "listings/show"
