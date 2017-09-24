@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'braintree/new'
-  post 'braintree/checkout'
+  # get 'braintree/new'
+  post 'reservations/checkout'
   
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create]
   end
 
-  resources :reservations, only: [:new, :destroy]
+  resources :reservations, only: [:new, :show, :destroy]
 
   get "/listings" => "listings#all", as: "all_listings"
   get "/listings/:id/verify" => "listings#verify", as: "verify_listing"
