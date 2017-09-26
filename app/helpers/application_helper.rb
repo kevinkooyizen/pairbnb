@@ -15,4 +15,13 @@ module ApplicationHelper
   def admin?
     current_user.admin
   end
+
+  def allowed?(action, user)
+    case action
+    when "verify"
+      if user.admin == true 
+        return true
+      end
+    end      
+  end
 end
