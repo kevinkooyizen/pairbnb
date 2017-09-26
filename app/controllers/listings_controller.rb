@@ -19,11 +19,11 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
     @listing.update(listing_params)
-    if !params["listing"]["tag_names"].nil?
+    if params["listing"]["tag_names"].nil?
       @listing.tag_names << params["listing"]["tag_names"]
     end
     if @listing.save
-      redirect_to "/users/#{current_user.id}/listings/#{params[:id]}"
+      redirect_to "/users/#{current_user.id}"
     else
       @errors = @listing.errors.full_messages
       render 'edit'
@@ -42,10 +42,15 @@ class ListingsController < ApplicationController
 
   def index
     @listing = Listing.all
-    if params[:search]
-      @listing = Listing.search(params[:search]).order("created_at DESC")
+    if params[:advanced] == "true"
+      byebug
+      @listing = Listing.search(params[:search])
     else
-      @listing = Listing.all.order("created_at DESC")
+      if params[:search]
+        @listing = Listing.search(params[:search]).order("created_at DESC")
+      else
+        @listing = Listing.all.order("created_at DESC")
+      end
     end
   end
 

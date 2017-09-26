@@ -1,38 +1,95 @@
 - if @listing.blank?
   h4
     | There are no addresses containing the term #{params[:search]}.
-.container
-  .row
-    - @listing.each do |listing|
-      .col-sm-6.col-md-4.col-lg-3.mt-4.front_page_card_container
-        .card.card-inverse.card-info.front_page_card
-          a href="/users/#{listing.user_id}/listings/#{listing.id}"
-            - if listing.photos == []
-              .card-img-top = image_tag("no_photo.jpg", width: "255")
-            - else
-              img.card-img-top src="#{listing.photos[0]}" /
-          .card-block
-            figure.profile
-              img.profile-avatar alt="" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" /
-            h4.card-title.mt-3
-              a href="/users/#{listing.user_id}/listings/#{listing.id}" =listing.name
-              -if logged_in?
-                - if listing.verification == false && current_user.customer == false
-                  button.btn.btn-info.float-right.btn-sm type="submit"=link_to 'Verify Listing', verify_listing_path(listing)
-            .meta.card-text
-              a = listing.property_type
-            .card-text
-              p Room number: #{listing.room_number}
-              p Number of beds: #{listing.bed_number}
-              p Accommodates: #{listing.guest_number}
-              p Country: #{listing.country}
-              p State: #{listing.state}
-              p City: #{listing.city}
-              p Zipcode: #{listing.zipcode}
-              p Address: #{listing.address}
-              p Price: RM#{listing.price}/night
-              p Description: #{listing.description}
-          .card-footer
-            small Last updated 3 mins ago
-            button.btn.btn-info.float-right.btn-sm
-              | Dead Button            
+- else
+  h4
+    | There are your search results:
+    / = form_for all_listings_path, html: { id: "city-form" } do |form|
+    /   = form.select(params[:city], options_for_select(@listing.pluck(:city)))
+    /   = submit_tag "Apply"
+  .btn-group
+    button.btn.btn-danger.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+      | City
+    .dropdown-menu 
+      / select
+      /   option value="volvo"  Volvo
+      /   option value="saab"  Saab
+      /   option value="mercedes"  Mercedes
+      /   option value="audi"  Audi
+
+      - @listing.pluck(:city).each do |city|
+        / params[:search]
+        / city
+        / a.dropdown-item href="#"  = city
+        .dropdown-item
+          = form_tag(all_listings_path, :method => "get", id: "search-form") do
+            = hidden_field_tag :advanced, true
+            = hidden_field_tag :search, "#{params[:search]}"
+            = submit_tag "#{city}"
+      /   / .dropdown-divider
+      /   / a.dropdown-item href="#"  Separated link
+      / = form_for all_listings_path, html: { id: "city-form" } do |form|
+        = form.hidden_field :advanced, value: true
+        / = form.collection_select('dogs', 'cats', 'mice', 'birds')
+        .dropdown-item = link_to city, "#", :onclick => "$('#city-form').submit()"
+        / = form_tag(all_listings_path, :method => "get", id: "city-form") do
+          = hidden_field_tag :advanced, true
+          = hidden_field_tag :city, "#{city}"
+          / = hidden_field_tag :search, value: params[:search], placeholder: "Listings"
+          / = submit_tag "Search", :name => nil
+          .dropdown-item = link_to city, "#", :onclick => "$('#city-form').submit()"
+  .btn-group
+    button.btn.btn-danger.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+      | Price Range
+    .dropdown-menu
+      a.dropdown-item href="#"  10-100
+      a.dropdown-item href="#"  100-500
+      a.dropdown-item href="#"  500-1000
+      a.dropdown-item href="#"  1000+
+      / .dropdown-divider
+      / a.dropdown-item href="#"  Separated link
+  .btn-group
+    button.btn.btn-danger.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+      | Amenities
+    .dropdown-menu
+      a.dropdown-item href="#"  10-100
+      a.dropdown-item href="#"  100-500
+      a.dropdown-item href="#"  500-1000
+      a.dropdown-item href="#"  1000+
+      / .dropdown-divider
+      / a.dropdown-item href="#"  Separated link
+  .container
+    .row
+      - @listing.each do |listing|
+        .col-sm-6.col-md-4.col-lg-3.mt-4.front_page_card_container
+          .card.card-inverse.card-info.front_page_card
+            a href="/users/#{listing.user_id}/listings/#{listing.id}"
+              - if listing.photos == []
+                .card-img-top = image_tag("no_photo.jpg", width: "255")
+              - else
+                img.card-img-top src="#{listing.photos[0]}" /
+            .card-block
+              figure.profile
+                img.profile-avatar alt="" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" /
+              h4.card-title.mt-3
+                a href="/users/#{listing.user_id}/listings/#{listing.id}" =listing.name
+                -if logged_in?
+                  - if listing.verification == false && current_user.customer == false
+                    button.btn.btn-info.float-right.btn-sm type="submit"=link_to 'Verify Listing', verify_listing_path(listing)
+              .meta.card-text
+                a = listing.property_type
+              .card-text
+                p Room number: #{listing.room_number}
+                p Number of beds: #{listing.bed_number}
+                p Accommodates: #{listing.guest_number}
+                p Country: #{listing.country}
+                p State: #{listing.state}
+                p City: #{listing.city}
+                p Zipcode: #{listing.zipcode}
+                p Address: #{listing.address}
+                p Price: RM#{listing.price}/night
+                p Description: #{listing.description}
+            .card-footer
+              small Last updated 3 mins ago
+              button.btn.btn-info.float-right.btn-sm
+                | Dead Button            

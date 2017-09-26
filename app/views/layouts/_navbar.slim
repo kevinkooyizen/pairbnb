@@ -9,6 +9,7 @@ nav.menu.nav_menu
       .input-group.input_nav
         = form_tag(all_listings_path, :method => "get", id: "search-form") do
           = text_field_tag :search, params[:search], placeholder: "Listings"
+          = hidden_field_tag :advanced, false
           = submit_tag "Search", :name => nil
 
   
