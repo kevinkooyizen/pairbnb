@@ -1,0 +1,10 @@
+- if admin?
+  button = link_to 'Disable Admin Access', adminchange_path
+
+- else
+  form accept-charset="UTF-8" action="/adminchange" method="get" 
+    input name="utf8" type="hidden" value="✓" /
+    label for="password"  Password:
+    input#q name="password" type="text" /
+    input name="commit" type="submit" value="Become Admin" /
+  p style="color:red" = @error

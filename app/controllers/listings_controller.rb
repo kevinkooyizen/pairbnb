@@ -5,7 +5,9 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
-    @listing.tag_names << params["listing"]["tag_names"]
+    if params["listing"]["tag_names"].nil?
+      @listing.tag_names << params["listing"]["tag_names"]
+    end
     if @listing.save
       redirect_to "/users/#{current_user.id}"
     else

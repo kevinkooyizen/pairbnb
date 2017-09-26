@@ -11,4 +11,8 @@ module ApplicationHelper
       when :alert then "alert alert-error"
     end
   end
+
+  def admin?
+    current_user.admin
+  end
 end

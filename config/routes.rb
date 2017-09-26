@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get "/listings/:id/remove_tag/:name" => "listings#remove_tag", as: "remove_tag"
   get "/listings/:id/add_tag" => "listings#add_tag", as: "add_tag"
   get '/about' => "static#about", as: "about"
+  get '/admin' => "static#admin", as: "admin"
+  get '/adminchange' => "static#adminchange", as: "adminchange"
 end

@@ -1,16 +1,24 @@
 - if @listing.blank?
   h4
     | There are no addresses containing the term #{params[:search]}.
-.container.mid_page_container
+.container
   .row
     - @listing.each do |listing|
       .col-sm-6.col-md-4.col-lg-3.mt-4.front_page_card_container
         .card.card-inverse.card-info.front_page_card
-          img.card-img-top src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" /
+          a href="/users/#{listing.user_id}/listings/#{listing.id}"
+            - if listing.photos == []
+              .card-img-top = image_tag("no_photo.jpg", width: "255")
+            - else
+              img.card-img-top src="#{listing.photos[0]}" /
           .card-block
             figure.profile
               img.profile-avatar alt="" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" /
-            h4.card-title.mt-3 =listing.name
+            h4.card-title.mt-3
+              a href="/users/#{listing.user_id}/listings/#{listing.id}" =listing.name
+              -if logged_in?
+                - if listing.verification == false && current_user.customer == false
+                  button.btn.btn-info.float-right.btn-sm type="submit"=link_to 'Verify Listing', verify_listing_path(listing)
             .meta.card-text
               a = listing.property_type
             .card-text
@@ -26,4 +34,5 @@
               p Description: #{listing.description}
           .card-footer
             small Last updated 3 mins ago
-            button.btn.btn-info.float-right.btn-sm Follow
+            button.btn.btn-info.float-right.btn-sm
+              | Dead Button            
