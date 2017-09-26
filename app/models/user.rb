@@ -20,7 +20,7 @@ class User < ApplicationRecord
       gender: auth_hash.extra.raw_info.gender,
       password: SecureRandom.base64(10),
     )
-    if !auth_hash.extra.raw_info.location.name.nil?
+    if !auth_hash.extra.raw_info.location.nil?
       user.update(country: auth_hash.extra.raw_info.location.name)
     end
     if !auth_hash.extra.raw_info.birthday.nil?
