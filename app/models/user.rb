@@ -18,11 +18,13 @@ class User < ApplicationRecord
       provider: auth_hash.provider,
   		email: auth_hash.info.email,
       gender: auth_hash.extra.raw_info.gender,
-      birthdate: Date.strptime(auth_hash.extra.raw_info.birthday, '%m/%d/%Y'),
       password: SecureRandom.base64(10),
     )
     if !auth_hash.extra.raw_info.location.name.nil?
       user (country: auth_hash.extra.raw_info.location.name)
+    end
+    if !strptime(auth_hash.extra.raw_info.birthday.nil?
+      birthdate: Date.strptime(auth_hash.extra.raw_info.birthday, '%m/%d/%Y'),
     end
     user.save
 		user.authentications << authentication
