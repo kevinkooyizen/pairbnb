@@ -11,19 +11,20 @@ class User < ApplicationRecord
 	require 'securerandom'
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
-  	user = self.create!(
+  	user = self.new(
   		first_name: auth_hash.info.first_name.scan(/\w+/)[0],
       last_name: auth_hash.info.last_name,
       full_name: auth_hash.info.name,
       provider: auth_hash.provider,
   		email: auth_hash.info.email,
       gender: auth_hash.extra.raw_info.gender,
-      if !auth_hash.extra.raw_info.location.name.nil?
-        country: auth_hash.extra.raw_info.location.name,
-      end
       birthdate: Date.strptime(auth_hash.extra.raw_info.birthday, '%m/%d/%Y'),
-  		password: SecureRandom.base64(10),
-		)
+      password: SecureRandom.base64(10),
+    )
+    if !auth_hash.extra.raw_info.location.name.nil?
+      user (country: auth_hash.extra.raw_info.location.name)
+    end
+    user.save
 		user.authentications << authentication
 		return user
 	end
