@@ -21,10 +21,10 @@ class User < ApplicationRecord
       password: SecureRandom.base64(10),
     )
     if !auth_hash.extra.raw_info.location.name.nil?
-      user (country: auth_hash.extra.raw_info.location.name)
+      user.update(country: auth_hash.extra.raw_info.location.name)
     end
     if !strptime(auth_hash.extra.raw_info.birthday.nil?
-      birthdate: Date.strptime(auth_hash.extra.raw_info.birthday, '%m/%d/%Y'),
+      user.update(birthdate: Date.strptime(auth_hash.extra.raw_info.birthday, '%m/%d/%Y')
     end
     user.save
 		user.authentications << authentication
