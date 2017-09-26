@@ -41,6 +41,14 @@
             .error_message
               | Guest Number can't be blank
     .text-field
+      = edit_form.label 'Listing Bed Number(s): '
+      .form_input
+        = edit_form.text_field :bed_number
+        - if @errors
+          - if @errors.include?("Bed_number can't be blank")
+            .error_message
+              | Bed Number can't be blank
+    .text-field
       = edit_form.label 'Listing Country: '
       .form_input
         = edit_form.text_field :country, type: 'country'

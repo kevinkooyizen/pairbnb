@@ -43,8 +43,23 @@ class ListingsController < ApplicationController
   def index
     @listing = Listing.all
     if params[:advanced] == "true"
-      byebug
       @listing = Listing.search(params[:search])
+      if !params[:city].empty?
+        @listing = @listing.search(params[:city])
+      end
+      if !params[:final_price].empty?
+        if !params[:initial_price].nil?
+          @listing = @listing.where(price: params[:initial_price]..params[:final_price])
+        else
+          @listing = @listing.where("price > #{params[:final_price]}")
+        end
+      end
+      if !params[:bed_number].empty?
+        @listing = @listing.where("bed_number >= #{params[:bed_number]}")
+      end
+      if !params[:room_number].empty?
+        @listing = @listing.where("room_number >= #{params[:room_number]}")
+      end
     else
       if params[:search]
         @listing = Listing.search(params[:search]).order("created_at DESC")
