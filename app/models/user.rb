@@ -18,7 +18,9 @@ class User < ApplicationRecord
       provider: auth_hash.provider,
   		email: auth_hash.info.email,
       gender: auth_hash.extra.raw_info.gender,
-      country: auth_hash.extra.raw_info.location.name,
+      if !auth_hash.extra.raw_info.location.name.nil?
+        country: auth_hash.extra.raw_info.location.name,
+      end
       birthdate: Date.strptime(auth_hash.extra.raw_info.birthday, '%m/%d/%Y'),
   		password: SecureRandom.base64(10),
 		)
