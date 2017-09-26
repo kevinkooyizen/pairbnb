@@ -23,7 +23,7 @@ class User < ApplicationRecord
     if !auth_hash.extra.raw_info.location.name.nil?
       user.update(country: auth_hash.extra.raw_info.location.name)
     end
-    if !strptime(auth_hash.extra.raw_info.birthday.nil?
+    if !auth_hash.extra.raw_info.birthday.nil?
       user.update(birthdate: Date.strptime(auth_hash.extra.raw_info.birthday, '%m/%d/%Y'))
     end
     user.save
