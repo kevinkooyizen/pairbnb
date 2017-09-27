@@ -43,22 +43,16 @@ class ListingsController < ApplicationController
   def index
     @listing = Listing.all
     if params[:advanced] == "true"
-      @listing = Listing.search(params[:search])
-      if !params[:city].empty?
-        @listing = @listing.search(params[:city])
-      end
-      if !params[:final_price].empty?
-        if !params[:initial_price].nil?
-          @listing = @listing.where(price: params[:initial_price]..params[:final_price])
-        else
-          @listing = @listing.where("price > #{params[:final_price]}")
+      search_params.each do |key, value|
+        if !(value.empty?)
+          if key == "initial_price"
+            @listing = @listing.send(key, value, params[:final_price])
+          elsif key == "final_price" && !params[:initial_price].present?
+            @listing = @listing.send(key, value)
+          elsif key != "final_price"
+            @listing = @listing.send(key, value)
+          end
         end
-      end
-      if !params[:bed_number].empty?
-        @listing = @listing.where("bed_number >= #{params[:bed_number]}")
-      end
-      if !params[:room_number].empty?
-        @listing = @listing.where("room_number >= #{params[:room_number]}")
       end
     else
       if params[:search]
@@ -115,5 +109,9 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:name, :address, :property_type, :user_id, :room_number, :guest_number, :country, :state, :city, :zipcode, :price, :description, :bed_number, photos: [])
+  end
+
+  def search_params
+    params.permit(:search, :initial_price, :final_price, :bed_number, :room_number, :city)
   end
 end
