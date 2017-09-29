@@ -1,4 +1,3 @@
-if !Rails.env.development?
   # Puma can serve each request in a thread from an internal thread pool.
   # The `threads` method setting takes two numbers: a minimum and maximum.
   # Any libraries that use thread pools should be configured to match
@@ -33,6 +32,10 @@ if !Rails.env.development?
   #
   preload_app!
 
+  if Rails.env.development?
+    worker_timeout 3600
+  end
+
   # If you are preloading your application and using Active Record, it's
   # recommended that you close any connections to the database before workers
   # are forked to prevent connection leakage.
@@ -55,4 +58,3 @@ if !Rails.env.development?
 
   # Allow puma to be restarted by `rails restart` command.
   plugin :tmp_restart
-end
