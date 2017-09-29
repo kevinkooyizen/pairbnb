@@ -1,14 +1,18 @@
 require 'date'
+require 'securerandom'
 
 class User < ApplicationRecord
-	include Clearance::User
-  validates :full_name, presence: true
-  validates :email, presence: true
-	has_many :authentications, dependent: :destroy
+  attr_accessor :password_confirmation
+  include Clearance::User
+  validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 20 }
+  validates :password, presence: true, length: { minimum: 6, maximum: 20 }
+  validates :first_name, presence: true
+  validates :email, uniqueness: true, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]{2,}+\z/ }
+  validates_confirmation_of :password
+  has_many :authentications, dependent: :destroy
   has_many :reservations
   mount_uploader :photo, PhotoUploader
 
-	require 'securerandom'
 
 	def self.create_with_auth_and_hash(authentication, auth_hash)
   	user = self.new(
