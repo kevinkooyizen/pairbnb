@@ -17,15 +17,19 @@
 
 .profile_content {
   margin-right: 50px;
+  float: left;
 }
 
 .listing_content {
   position: relative;
+  margin-right: 20px;
 }
 
 .listing_container {
   display: inline-block;
-  position: absolute;
+  // position: absolute;
+  float: left;
+  width: 810px;
 }
 
 h4 a {

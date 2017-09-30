@@ -14,3 +14,8 @@
 //= require turbolinks
 //= require flatpickr-calendar
 //= require_tree .
+
+$(document).ready(function(){
+  if ($('.mid_page_container').height() < window.innerHeight-92)
+  $('.mid_page_container').css('height',window.innerHeight-92) ;
+})

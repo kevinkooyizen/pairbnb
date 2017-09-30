@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 20 }
   validates :password, presence: true, length: { minimum: 6, maximum: 20 }
   validates :first_name, presence: true
-  validates :email, uniqueness: true, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]{2,}+\z/ }
+  validates :email, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]{2,}+\z/ }, uniqueness: { case_sensitive: true }
   validates_confirmation_of :password
   has_many :authentications, dependent: :destroy
   has_many :reservations
