@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create]
   end
 
-  resources :reservations, only: [:new, :show, :destroy]
+  resources :reservations, only: [:show, :destroy] do
+    member do
+      get 'new'
+    end
+  end
 
   get "/listings" => "listings#all", as: "all_listings"
   get "/listings/:id/verify" => "listings#verify", as: "verify_listing"

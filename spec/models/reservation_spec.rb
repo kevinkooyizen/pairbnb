@@ -4,6 +4,27 @@ require 'rails_helper'
 RSpec.describe Reservation, type: :model do
 
   context "validations" do
+    When(:user) { User.create(
+      id: 1,
+      first_name: "Raz",
+      email: "raz@nextacademy.com",
+      password: "123456",
+      password_confirmation: "123456"
+    )}
+
+    When(:listing) { Listing.create(
+      id: 1,
+      user_id: 1,
+      name: "Dog House",
+      address: "Jalan Anjing",
+      guest_number: 2)}
+
+    When(:reservation) { Reservation.create(
+      user_id: 1,
+      listing_id: 1,
+      number_of_guests: 2,
+      check_in_date: Date.new(2017,1,30),
+      check_out_date: Date.today)}
 
     it "should have check in and out dates, number of guests and paid" do
       should have_db_column(:check_in_date).of_type(:date)
@@ -12,55 +33,9 @@ RSpec.describe Reservation, type: :model do
       should have_db_column(:paid).of_type(:boolean)
     end
 
-    describe "validates overlapping dates" do
-      subject { Reservation.create(check_in_date: Date.new(19))}
-      it 'checks overlapping dates' do
-        expect(check_overlapping_dates).to be_valid
-      end
-    end
-
-    # happy_path
-    describe "can be created when all attributes are present" do
-      When(:user) { User.create(
-        first_name: "Raz",
-        email: "raz@nextacademy.com",
-        password: "123456",
-        password_confirmation: "123456"
-      )}
-      Then { user.valid? == true }
-    end
-
-    # unhappy_path
-    describe "cannot be created without a name" do
-      When(:user) { User.create(email: "josh@nextacademy.com", password: "123456", password_confirmation: "123456") }
-      Then { user.valid? == false }
-    end
-
-    describe "cannot be created without a email" do
-      When(:user) { User.create(first_name: "Josh Teng", password: "123456", password_confirmation: "123456") }
-      Then { user.valid? == false }
-    end
-
-
-    describe "cannot be created without a password" do
-      When(:user) { User.create(first_name: "Josh Teng", email: "josh@nextacademy.com") }
-      Then { user.valid? == false }
-    end
-
-
-
-    describe "should permit valid email only" do
-      let(:user1) { User.create(first_name: "Tom", email: "tom@nextacademy.com", password: "123456", password_confirmation: "123456")}
-      let(:user2) { User.create(first_name: "Delilah",email: "delilah.com", password: "123456", password_confirmation: "123456") }
-
-      # happy_path
-      it "sign up with valid email" do
-        expect(user1).to be_valid
-      end
-
-      # unhappy_path
-      it "sign up with invalid email" do
-        expect(user2).to be_invalid
+    describe "validates custom methods" do
+      it 'checks validitiy of reservation' do
+        reservation.valid?
       end
     end
   end

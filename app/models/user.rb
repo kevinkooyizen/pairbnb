@@ -2,6 +2,8 @@ require 'date'
 require 'securerandom'
 
 class User < ApplicationRecord
+  include Clearance::User
+
   attr_accessor :password_confirmation
   include Clearance::User
   validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 20 }

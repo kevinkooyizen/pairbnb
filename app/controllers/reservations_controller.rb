@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
 
   def new
+    @reservation = Reservation.find(params[:id])
     @client_token = Braintree::ClientToken.generate
   end
 
@@ -8,13 +9,13 @@ class ReservationsController < ApplicationController
     date = params[:reservation][:check_in_date].partition(' to ')
     params[:reservation][:check_in_date] = date[0]
     params[:reservation][:check_out_date] = date[2]
-    @listing = Listing.find(params[:listing_id])
+    @listing = Listing.find(params[:reservation][:listing_id])
     @host = User.find(@listing.user_id)
     @reservation = current_user.reservations.new(reservation_params)
-    @reservation.listing = @listing
+    # @reservation.listing = @listing
     if @reservation.save
       ReservationJob.perform_later(current_user, @host, @reservation.id)
-      redirect_to new_reservation_path(reservation_id: @reservation.id)
+      redirect_to reservation_path(@reservation)
     else
       @errors = @reservation.errors.full_messages
       render "listings/show"

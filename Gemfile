@@ -50,6 +50,9 @@ gem 'braintree'
 gem 'sidekiq'
 # deploying
 gem 'rails_12factor', group: :production
+# rails testing with gems
+gem 'rails-controller-testing'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

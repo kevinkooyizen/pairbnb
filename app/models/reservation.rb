@@ -1,14 +1,15 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :listing
-
+  validates :check_in_date, presence: true
+  validates :check_out_date, presence: true
   validate :check_out_after_check_in
   validate :check_in_date_cannot_be_in_the_past
   validate :check_overlapping_dates
   validate :check_max_guests
 
   def check_in_date_cannot_be_in_the_past
-    erors.add(:check_in_date, "can't be in the past") if
+    errors.add(:check_in_date, "can't be in the past") if
       !check_in_date.blank? and check_in_date < Date.today
   end
 
