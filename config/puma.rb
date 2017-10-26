@@ -32,9 +32,9 @@
   #
   preload_app!
 
-  if Rails.env.development?
-    worker_timeout 3600
-  end
+  # if Rails.env.development?
+  #   worker_timeout 3600
+  # end
 
   # If you are preloading your application and using Active Record, it's
   # recommended that you close any connections to the database before workers
